@@ -1,11 +1,30 @@
 # Team13 Library Database
 
+## Hosted Site: 
+http://onethreelibrary.site/
 
-**Library database**: The purpose of this project was to create a library database with several different functionalities. The library contains two types of users members and admins (employees). The members are split into students and faculty. A member may request/hold items. There is a different limit for how many items a faculty vs student can borrow or hold. Also, the number of days will be different in case of students and teachers. Each item has a unique ID, and may have a different number of copies. 
+## Link to files and readme:
+https://drive.google.com/drive/folders/1nnmtJf7R45BZ9YpfuE35UvN-HWYW2V3D?usp=sharing
 
-# Installation using wamp
+#
 
-Using WAMP (Windows Apache MySQL PHP)
+## Library database:
+The purpose of this project was to create a library database with several different functionalities. The library contains two types of users members and admins (employees). The members are split into students and faculty. A member may request/hold items. There is a different limit for how many items a faculty vs student can borrow or hold. Also, the number of days will be different in case of students and teachers. Each item has a unique ID, and may have a different number of copies. 
+
+## Installing the files:
+The Library project.zip folder in the link above contains the database sql dump (onethree_test.sql). If you are using the MySQL Workbench simply either import the sql file or copy the code into the editor in the Workbench and execu
+
+
+##
+
+# Installation files and setting up using wamp
+
+## Installing the files:
+The Library project.zip folder in the link above contains the database sql dump (onethree_test.sql). If you are using the MySQL Workbench simply either import the sql file or copy the code into the editor in the Workbench and execu
+
+
+**Using WAMP (Windows Apache MySQL PHP)**
+
 After the installation of WAMP proceed with the following steps.
 1. Import the database using the import function in WAMP.
 2. Drag all php files from the FILES Folder into the wamp project folder. 
@@ -25,7 +44,7 @@ After the installation of WAMP proceed with the following steps.
 
 #
 
-    CREATE DEFINER=`root`@`localhost` EVENT `DaysPassed` ON SCHEDULE EVERY 1 DAY STARTS '2021-04-09 21:46:31' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE daysopened SET Days = Days + 1
+    CREATE DEFINER=`root`@`localhost` EVENT `DaysPassed` ON SCHEDULE EVERY 1 DAY STARTS '2021-04-09 21:46:31' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE daysopened SET days_passed= days_passed
 
 The above code is to update the days passed once a day. If you would like to see this happen at a much faster rate then the code below will make a second equal to a day passed in the system
 
@@ -33,8 +52,30 @@ The above code is to update the days passed once a day. If you would like to see
 
 #
 **Do note that the fines in this system run off an integer count to calculate fines. For reports, they are based on timestamps and not this count. Additionally if you wish to see this count manually you can go to the page with projectfoler/cronjob.php (replaceproject folder to local project name) to increase the days by one per refresh. Another note is that faculty members get 20 days before fines are accumulated while students get 14 days. Unfortunately for the cronjob regarding emails, this is done using our stack and we can not figure out a way to have this working locally.**
+#
 
-* In order to run the email script, edits need to be done to php.ini and sendmail.ini
+To view events in my sql workbench use 
+    
+    SHOW EVENTS FROM test; 
+
+Test can be replaced with the database name. To show the code the event has use 
+
+    SHOW CREATE EVENT DaysPassed;
+
+To enable events or turn them off use
+
+    SET GLOBAL event_scheduler = ON;
+    SET GLOBAL event_scheduler = OFF;
+
+To drop the event if you no longer want to use it use
+
+    DROP EVENT IF EXISTS DaysPassed;
+
+#
+
+
+
+ In order to run the email script, edits need to be done to php.ini and sendmail.ini
 Go to the php.ini file and search for [mail function]. Comment out  
 
       SMTP=localhost and smtp_port=25 using ‘;’
@@ -67,7 +108,7 @@ set
       auth_password = your email’s password
 
 * If apache server is still running, restart it so changes go into effect.
-Create a cronjob to run the script everyday at 5 am or whatever time you want idc. The purpose is to email the user, who still has items borrowed, with a list of the items that are due in 3 days. This can be done on windows using a task scheduler or in linux using 
+Create a cronjob to run the script everyday at 5 am or whatever time you want. The purpose is to email the user, who still has items borrowed, with a list of the items that are due in 3 days. This can be done on windows using a task scheduler or in linux using 
       
       $crontab -e.
 
@@ -78,14 +119,29 @@ Create a cronjob to run the script everyday at 5 am or whatever time you want id
 Once these are set up the project should be good to go locally. A quick list of student information and member information can be found below
 Student login 
 
-## Member side login information   
-1.  * Username: test
-    * Pass: 123
-    * Type: faculty
+## Member side login information    
 
-2.  * Username: m
-    * Pass: 123
-    * Type: faculty
+  Username| Pass| Type
+  -------|------|-------
+  m|123|faculty
+  test|123|faculty
+  user1|123|student
+  q |123|student
+  record|123|student
+  guy|science|faculty
+  johnjones|jonesboy|student
+
+## Admin login info
+
+  username|password
+  ---------|---------
+  cool guy|paswrod
+  the three|pass
+  joe123|ya
+  sass|dsdfdsf
+  cass|123456
+  stu|123
+
 
 #
 # Tiggers
@@ -157,10 +213,12 @@ The last 2 triggers are on the admin side and are activated when creating an emp
       |-------|----|----------|------------|-----------|------|
       45|media|11111|$1000|2021-05-02|paid
 
+
       ## Borrowed Historia example
       |BorrowID|Title|ItemID|Type|date Issued|Date Due|Date Returned
       |--------|-----|------|----|-----------|--------|-------------|
       |75|tablet|7|device|2021-04-18|2021-05-08|2021-05-18|
+
 
     * Furthermore, the user can also click on the check fines link in the home page to view any fines that exists with the option to pay for it. Paying off any debt with the library gives the user liberty of checking out items once again since fines obligate users from checking out. 
     * Finally the logout tab redirects user back to the login page where another member/ employee can login to the library.
@@ -190,7 +248,7 @@ Inventory page shows tables of each category of item with the choice to edit or 
 
 # Credits
 
-**Collaborators**
+## Collaborators
 
   * Yury Ionov
   * Daniel Bonilla
@@ -198,6 +256,22 @@ Inventory page shows tables of each category of item with the choice to edit or 
   * Ahmed Diefalla
   * Andres Sanchez
 
-# License?
-    MIT
+
+## Sources
+
+  https://www.youtube.com/watch?v=4ZBTeqSuBrk
+  
+  Crud Tutorials:
+
+  https://www.youtube.com/watch?v=3xRMUDC74Cw&t=61s
+
+  https://www.youtube.com/watch?v=JZdMXUIMdQw
+    
+  WAMP tutorial:
+
+  https://www.youtube.com?watch?v=WYufSGgaCZ8
+
+  login tutorial
+
+  https://www.youtube.com/watch?v=WYufSGgaCZ8
 
