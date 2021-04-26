@@ -34,6 +34,46 @@ The above code is to update the days passed once a day. If you would like to see
 #
 **Do note that the fines in this system run off an integer count to calculate fines. For reports, they are based on timestamps and not this count. Additionally if you wish to see this count manually you can go to the page with projectfoler/cronjob.php (replaceproject folder to local project name) to increase the days by one per refresh. Another note is that faculty members get 20 days before fines are accumulated while students get 14 days. Unfortunately for the cronjob regarding emails, this is done using our stack and we can not figure out a way to have this working locally.**
 
+* In order to run the email script, edits need to be done to php.ini and sendmail.ini
+Go to the php.ini file and search for [mail function]. Comment out  
+
+      SMTP=localhost and smtp_port=25 using ‘;’
+
+* Set “sendemail_from =” whatever email you prefer using or any dummy emails
+Set 
+      
+      sendmail_path = C:\xampp\sendmail\sendmail.exe -t” 
+  or whatever path your sendmail.exe file lies in.
+
+* Now go to the sendmail.ini file
+set 
+
+      smtp_server=smtp.gmail.com 
+    for gmail or 
+      
+      smtp.mail.yahoo.com”
+      
+     if you are using yahoo
+
+* set 
+    
+      smtp_port=465 
+
+    and 
+      
+      smtp_ssl = ssl
+
+      auth_username= user email that you created for this test
+      auth_password = your email’s password
+
+* If apache server is still running, restart it so changes go into effect.
+Create a cronjob to run the script everyday at 5 am or whatever time you want idc. The purpose is to email the user, who still has items borrowed, with a list of the items that are due in 3 days. This can be done on windows using a task scheduler or in linux using 
+      
+      $crontab -e.
+
+
+
+
 #
 Once these are set up the project should be good to go locally. A quick list of student information and member information can be found below
 Student login 
