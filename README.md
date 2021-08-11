@@ -144,7 +144,7 @@ Student login
 
 
 #
-# Tiggers
+# Triggers
 
 There are 6 triggers in this project and 4 of them are used to help calculate fines. Within the schema there are 2 triggers attached to DaysPassed. 
 
