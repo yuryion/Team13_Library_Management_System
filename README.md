@@ -1,6 +1,6 @@
 # Team13 Library Database
 
-## Hosted Site: 
+## Hosted Site (INACTIVE): 
 http://onethreelibrary.site/
 
 ## Link to files and readme:
