@@ -48,7 +48,7 @@ The above code is to update the days passed once a day. If you would like to see
     CREATE DEFINER=`root`@`localhost` EVENT `DaysPassed` ON SCHEDULE EVERY 1 SECOND STARTS '2021-04-09 21:46:31' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE daysopened SET Days = Days + 1
 
 #
-**Do note that the fines in this system run off an integer count to calculate fines. For reports, they are based on timestamps and not this count. Additionally if you wish to see this count manually you can go to the page with projectfoler/cronjob.php (replaceproject folder to local project name) to increase the days by one per refresh. Another note is that faculty members get 20 days before fines are accumulated while students get 14 days. Unfortunately for the cronjob regarding emails, this is done using our stack and we can not figure out a way to have this working locally.**
+**Do note that the fines in this system run off an integer count to calculate fines. For reports, they are based on timestamps and not this count. Additionally if you wish to see this count manually you can go to the page with projectfoler/cronjob.php (replace project folder to local project name) to increase the days by one per refresh. Another note is that faculty members get 20 days before fines are accumulated while students get 14 days. Unfortunately for the cronjob regarding emails, this is done using our stack and we can not figure out a way to have this working locally.**
 #
 
 To view events in my sql workbench use 
