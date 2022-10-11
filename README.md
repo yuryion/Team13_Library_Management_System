@@ -11,16 +11,13 @@ https://drive.google.com/drive/folders/1nnmtJf7R45BZ9YpfuE35UvN-HWYW2V3D?usp=sha
 ## Library database:
 The purpose of this project was to create a library database with several different functionalities. The library contains two types of users members and admins (employees). The members are split into students and faculty. A member may request/hold items. There is a different limit for how many items a faculty vs student can borrow or hold. Also, the number of days will be different in case of students and teachers. Each item has a unique ID, and may have a different number of copies. 
 
-## Installing the files:
-The Library project.zip folder in the link above contains the database sql dump (onethree_test.sql). If you are using the MySQL Workbench simply either import the sql file or copy the code into the editor in the Workbench and execu
-
 
 ##
 
 # Installation files and setting up using wamp
 
 ## Installing the files:
-The Library project.zip folder in the link above contains the database sql dump (onethree_test.sql). If you are using the MySQL Workbench simply either import the sql file or copy the code into the editor in the Workbench and execu
+The Library project.zip folder in the link above contains the database sql dump (onethree_test.sql). If you are using the MySQL Workbench simply either import the sql file or copy the code into the editor in the Workbench and execute.
 
 
 **Using WAMP (Windows Apache MySQL PHP)**
@@ -80,7 +77,7 @@ Go to the php.ini file and search for [mail function]. Comment out
 
       SMTP=localhost and smtp_port=25 using ‘;’
 
-* Set “sendemail_from =” whatever email you prefer using or any dummy emails
+* Set “sendemail_from =” to whatever email you prefer using or any dummy emails
 Set 
       
       sendmail_path = C:\xampp\sendmail\sendmail.exe -t” 
